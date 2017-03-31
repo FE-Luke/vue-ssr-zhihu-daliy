@@ -1,0 +1,24 @@
+{
+  "name": "vue-zhihu-ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ream build",
+    "start": "ream start",
+    "dev": "ream dev"
+  },
+  "keywords": [],
+  "author": "Zhichao Liu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "vue": "^2.2.6",
+    "vue-router": "^2.3.0",
+    "vuex": "^2.2.1"
+  },
+  "devDependencies": {
+    "mint-ui": "^2.2.2",
+    "ream": "^0.11.1"
+  }
+}
