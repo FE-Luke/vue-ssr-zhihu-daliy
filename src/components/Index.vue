@@ -24,6 +24,7 @@
 
 <script>
 	import { Swipe, SwipeItem } from 'mint-ui';
+	import { mapGetters } from 'vuex';
 	export default{
 		name:'Home',
 		head:{
@@ -33,14 +34,8 @@
 		    [Swipe.name]:Swipe,
             [SwipeItem.name]:SwipeItem
         },
-		asyncData({store}){
-			return store.dispatch('fetchIndexData')
-				.then((res) => {
-					return{
-						swiperData:res.data.top_stories,
-						todayData:res.data.stories
-					}
-				})
+        preFetch({store}){
+			return store.dispatch('fetchIndexData');
 		},
 		methods:{
 			formatTitle(title){
@@ -49,7 +44,8 @@
             changeRoute(newsid){
 				this.$router.push('/news/'+newsid)
             }
-		}
+		},
+        computed:mapGetters(['swiperData','todayData'])
 
 	}
 </script>

@@ -9,19 +9,17 @@
     </div>
 </template>
 <script>
-    export default{
+	import { mapGetters } from 'vuex';
+
+	export default{
     	name:'news',
-        asyncData({route,store}){
-    		return store.dispatch('fetchNewsData',route.params.id)
-                .then((res) => {
-                    return{
-                    	newsData:res.data
-                    }
-                })
+	    preFetch({route,store}){
+    		return store.dispatch('fetchNewsData',route.params.id);
         },
         mounted(){
     		document.body.scrollTop = 0;
-        }
+        },
+        computed:mapGetters(['newsData'])
     }
 </script>
 <style>
