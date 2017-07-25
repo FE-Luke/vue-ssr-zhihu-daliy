@@ -2,11 +2,12 @@
     <div id="Index">
         <div>
             <mt-swipe :auto="8000" :show-indicators="false" :speed="800">
-                <mt-swipe-item v-for="(item,index) in swiperData" :key="index" :class="{'is-active':index==0}" @click.native="changeRoute(item.id)">
+                <mt-swipe-item v-for="(item,index) in swiperData" :key="index" :class="{'is-active':index==0}"
+                               @click.native="changeRoute(item.id)">
                     <div :style="{backgroundImage:'url('+item.image+')'}" class="swiperItem">
                         <div class="title">
                             {{item.title}}
-                    </div>
+                        </div>
                     </div>
                 </mt-swipe-item>
             </mt-swipe>
@@ -23,31 +24,29 @@
 </template>
 
 <script>
-	import { Swipe, SwipeItem } from 'mint-ui';
-	import { mapGetters } from 'vuex';
-	export default{
-		name:'Home',
-		head:{
-			title:'知乎日报'
+	import {Swipe, SwipeItem} from 'mint-ui';
+	import {mapGetters} from 'vuex';
+
+	export default {
+		name: 'Home',
+		components: {
+			[Swipe.name]: Swipe,
+			[SwipeItem.name]: SwipeItem
 		},
-		components:{
-		    [Swipe.name]:Swipe,
-            [SwipeItem.name]:SwipeItem
-        },
-        preFetch({store}){
+		preFetch({store}) {
 			return store.dispatch('fetchIndexData');
 		},
-		methods:{
-			formatTitle(title){
-				return title.replace(/\n/,'<br>');
+		methods: {
+			formatTitle(title) {
+				return title.replace(/\n/, '<br>');
 			},
-            changeRoute(newsid){
-				this.$router.push('/news/'+newsid)
-            }
+			changeRoute(newsid) {
+				this.$router.push('/news/' + newsid);
+			}
 		},
-        computed:mapGetters(['swiperData','todayData'])
+		computed: mapGetters(['swiperData', 'todayData'])
 
-	}
+	};
 </script>
 
 <style scoped>
@@ -56,49 +55,57 @@
         height: 230px;
         background: #e0e0e0;
     }
-    .mint-swipe .swiperItem{
+
+    .mint-swipe .swiperItem {
         position: relative;
         height: 230px;
         background-size: cover;
         background-position: center center;
     }
-    .swiperItem .title{
+
+    .swiperItem .title {
         line-height: 1.8rem;
         position: absolute;
         right: 5%;
-        bottom:8%;
+        bottom: 8%;
         color: #fff;
         width: 75%;
         text-align: right;
         font-size: 1.25rem;
         text-shadow: 0 0 2px #000;
     }
-    .list{
+
+    .list {
         width: 100%;
         box-sizing: border-box;
         padding: 0 5%;
         font-size: 1rem;
     }
-    .list .listItem{
+
+    .list .listItem {
         width: 100%;
         height: 6rem;
         border-bottom: 1px solid #e0e0e0;
         box-sizing: border-box;
         padding: 0.8rem 0;
     }
-    .listItem > *{
+
+    .listItem > * {
         float: left;
     }
-    .listItem .title{
+
+    .listItem .title {
         width: 72.5%;
         margin-right: 2.5%;
     }
-    .listItem .img{
+
+    .listItem .img {
         width: 25%;
         height: 100%;
         overflow: hidden;
     }
-    .listItem .img > img{
+
+    .listItem .img > img {
         width: 100%;
     }
 </style>

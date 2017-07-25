@@ -8,7 +8,8 @@
     import { mapGetters } from 'vuex'
     export default{
         name:'app',
-        head:{
+	    metaInfo:{
+            title: '知乎日报',
             meta:[
                 { name: 'referrer', content: 'never' }
             ]
